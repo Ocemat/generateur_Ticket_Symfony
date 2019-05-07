@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GenerateurTicketController!{% endblock %}
+
+{% block body %}
+
+<section id="container1" class="container-fluid">
+        <form action="index.php/createTicket" method="GET">
+    
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Noobs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="listeNoobs" size="1">
+                                            <option value=" " hidden> Qui est le noob ? </option>
+                                            {% for noob in noobs %}
+                                                <option value={{ noob.id }}> {{ noob.prenom }} {{ noob.nom}} </option>
+                                            {% endfor %}  
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="col-md-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fucking Reasons</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="listeRaisons" size="1">
+                                            <option value=" " hidden> Quelle est votre raison ? </option>
+                                            {% for reason in reasons %}
+                                                <option value={{ reason.id }}> {{ reason.libelle }} </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="col-md-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Boss</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select name="listeFormateurs" size="1">
+                                            <option value=" " hidden> Qui est le formateur ? </option>
+                                            {% for boss in bosses %}
+                                                <option value={{ boss.id }}> {{ boss.prenom }} {{ boss.nom }} </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="col-md-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Urgence ?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <option value=" " hidden> Quelle est votre urgence ?</option>
+                                        <select name="listeUrgence" size="1">
+                                            {% for urgence in urgences %}
+                                                <option value={{ urgence.id }}> {{ urgence.libelle }} </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    
+            <div><button type="submit" class="btn btn-primary btn-lg btn-block">Générer un
+                    ticket</button></div>
+            </div>
+        </form>
+    </section>
+    
+    <section id="container1" class="container-fluid">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">Tickets en cours</h2>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+    
+                    <div class="col-md-12">
+                        <table class="table">
+    
+                            <tr>
+                                <th> N° Ticket </th>
+                                <th> Date et Heure </th>
+                                <th> Temps d'attente </th>
+                                <th> Nom Noob </th>
+                                <th> Reason </th>
+                                <th> Nom Boss </th>
+                                <th> Urgence </th>
+                                <th> Action </th>
+                            </tr>
+                            {% for ticket in tickets %}
+                                <tr>
+                                    <td> {{ ticket.id }} </td>    
+                                    <td> {{ ticket.createdAt }}  </td>
+                                    <td> Il y a <?= $ticket->getTpsAttente(); ?></td>
+                                    <td> {{ ticket.idNoob }}  </td>
+                                    <td> {{ ticket.idReason }} </td>
+                                    <td> {{ ticket.idBoss }} </td>
+                                    <td> {{ ticket.idUrgence}} </td>
+                                    <td><a href="index.php/delete?id=<?= $ticket->getId() ?>"> <button> Delete </button> </a> </td>
+                                </tr>
+                            {% endfor %}
+    
+                        </table>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+        </div>
+        <a href = "html2pdf/html2pdf.class.php"> Générer un pdf </a>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+{% endblock %}

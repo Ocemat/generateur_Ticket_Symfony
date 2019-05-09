@@ -11,6 +11,8 @@ class NoobFixtures extends Fixture {
         for($i = 1; $i <= 10; $i++ ) {
             $noob = new Noob();
             $noob->setNom("nom $i")
+                 ->setEmail("email$i@gmail.com")
+                 ->setPassword("password$i")
                  ->setPrenom("prenom $i");
         $manager->persist($noob);
         }

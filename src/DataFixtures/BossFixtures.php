@@ -11,6 +11,8 @@ class BossFixtures extends Fixture {
         for($i = 1; $i <= 10; $i++ ) {
             $boss = new Boss();
             $boss->setNom("nom $i")
+                 ->setEmail("email$i@gmail.com")
+                 ->setPassword("password$i")
                  ->setPrenom("prenom $i");
         $manager->persist($boss);
     }

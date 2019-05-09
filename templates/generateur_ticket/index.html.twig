@@ -137,7 +137,7 @@
                                     <td> {{ ticket.idReason }} </td>
                                     <td> {{ ticket.idBoss }} </td>
                                     <td> {{ ticket.idUrgence}} </td>
-                                    <td><a href="index.php/delete?id=<?= $ticket->getId() ?>"> <button> Delete </button> </a> </td>
+                                    <td><a href="index.php/delete?id=" {{ ticket.id }}> <button> Delete </button> </a> </td>
                                 </tr>
                             {% endfor %}
     
@@ -149,7 +149,7 @@
         </div>
     
         </div>
-        <a href = "html2pdf/html2pdf.class.php"> Générer un pdf </a>
+
     </section>
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
